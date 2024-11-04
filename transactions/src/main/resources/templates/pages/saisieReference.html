@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="/static/assets/css/saisieReference.css">
+    <title>Saisie de Référence</title>
+  
+</head>
+<body>
+
+<div class="form-container">
+    <h2>Saisir Référence</h2>
+
+	<form action="/pages/saisieReference/check" method="POST">
+        <input type="text" name="reference" placeholder="Entrez la référence" required>
+
+        <!-- Message d'erreur ou de succès -->
+        <div th:if="${error}" class="error" th:text="${error}"></div>
+        <div th:if="${success}" class="success" th:text="${success}"></div>
+
+        <button type="submit">Vérifier Référence</button>
+    </form>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,4 @@
+Reference: F7E85ACA4BD23036
+Date: 2024-10-29T13:00:31
+Client: Cashpoint
+Date d'expiration référence: 2026-10-29

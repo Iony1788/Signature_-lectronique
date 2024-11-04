@@ -1,0 +1,120 @@
+/* Global Styles */
+body {
+    background-color: #f4f4f4;  /* Couleur de fond douce */
+    color: #333; /* Couleur de texte sombre pour le contraste */
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 20px;
+}
+
+/* Form Styles */
+form {
+    background-color: #ffffff; /* Fond blanc pour le formulaire */
+    border-radius: 10px; /* Coins arrondis */
+    padding: 25px;
+    max-width: 500px;
+    margin: auto;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* Ombre plus douce pour le formulaire */
+}
+
+/* Input Styles */
+label {
+    display: block;
+    margin: 15px 0 5px;
+    font-weight: bold;
+    font-size: 14px; /* Taille légèrement augmentée pour les étiquettes */
+    color: #555; /* Couleur d'étiquette légèrement plus sombre */
+}
+
+input[type="text"],
+input[type="file"],
+input[type="submit"],
+button {
+    width: 100%;
+    padding: 12px; /* Augmentation du padding */
+    margin: 8px 0;
+    border: 1px solid #ced4da; /* Couleur de bordure douce */
+    border-radius: 5px; /* Coins arrondis */
+    background-color: #ffffff; /* Fond blanc pour les entrées */
+    color: #333; /* Texte sombre pour les entrées */
+    font-size: 16px;
+    font-weight: 500; /* Poids moyen pour les entrées */
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Button Styles */
+.reference-button {
+    background-color: #28a745; /* Fond vert */
+    color: #ffffff;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px; /* Coins arrondis */
+    padding: 12px; /* Padding pour le bouton */
+    font-size: 16px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+/* Button Hover Styles */
+.reference-button:hover {
+    background-color: #218838; /* Vert plus sombre au survol */
+    transform: translateY(-2px); /* Effet de levée léger */
+}
+
+/* Input Focus Styles */
+input[type="text"]:focus,
+input[type="file"]:focus {
+    border-color: #007bff; /* Bordure bleue en focus */
+    outline: none; /* Supprimer le contour par défaut */
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); /* Ombre légère bleue en focus */
+}
+
+/* Button Submit Styles */
+input[type="submit"] {
+    background-color: #007bff; /* Couleur primaire Bootstrap */
+    color: #ffffff;
+    border: none; /* Supprimer la bordure par défaut */
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+/* Button Submit Hover Styles */
+input[type="submit"]:hover {
+    background-color: #0056b3; /* Bleu plus sombre au survol */
+    transform: translateY(-2px); /* Effet de levée léger */
+}
+
+/* Section Visibility Styles */
+#cinUpload,
+#referenceInput,
+#referenceUpload {
+    display: none; /* Caché par défaut */
+}
+
+#createBadgeButton {
+    background-color: #4CAF50; /* Vert pour indiquer une action positive */
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    transition: background-color 0.3s ease, transform 0.3s ease; /* Ajout d'une transition pour une interaction douce */
+}
+
+#createBadgeButton:hover {
+    background-color: #45a049; /* Changement de la couleur de fond au survol */
+    transform: scale(1.05); /* Légère mise en avant du bouton au survol */
+}
+
+#createBadgeButton:active {
+    transform: scale(0.98); /* Légère réduction du bouton lors du clic */
+}
+
+
+/* Responsive Styles */
+@media (max-width: 600px) {
+    form {
+        padding: 20px; /* Ajustement du padding pour les petits écrans */
+        max-width: 100%; /* Largeur complète sur les petits écrans */
+    }
+}

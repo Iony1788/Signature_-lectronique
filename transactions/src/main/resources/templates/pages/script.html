@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Mon Application</title>
+</head>
+<body>
+  <!-- Autres éléments de la page -->
+
+  <script>
+    fetch("http://10.10.11.12:8080/list/download/images")
+      .then(response => {
+        if (!response.ok) {
+          throw new Error("Erreur de réseau : " + response.status);
+        }
+        return response.json();
+      })
+      .then(data => {
+        console.log("Données récupérées :", data);
+      })
+      .catch(error => {
+        console.error("Erreur lors de la récupération :", error);
+      });
+  </script>
+</body>
+</html>

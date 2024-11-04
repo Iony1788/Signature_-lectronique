@@ -1,0 +1,8 @@
+{
+  "realm": "Transactions",
+  "auth-server-url": "https://sso.eqima.org",
+  "ssl-required": "external",
+  "resource": "transactions-keycloak",
+  "public-client": true,
+  "confidential-port": 0
+}

@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/assets/css/infoUser.css">
+    <title>Formulaire d'utilisateur</title>
+</head>
+<body>
+
+    <form id="userForm" action="/pages/saisieReference/save" method="post" enctype="multipart/form-data">
+        <!-- Champ Nom -->
+        <label for="nom">Nom</label>
+        <input type="text" id="nom" name="nom" required>
+
+        <!-- Champ Prénom -->
+        <label for="prenom">Prénom</label>
+        <input type="text" id="prenom" name="prenom" required>
+
+        <!-- Champ Numéro Matricule -->
+        <label for="numeroMatricule">Numéro Matricule</label>
+        <input type="text" id="numeroMatricule" name="numeroMatricule">
+
+        <!-- Champ caché pour l'ID utilisateur -->
+        <input type="hidden" id="userId" name="userId" value="1234"> <!-- Remplacez par l'ID utilisateur réel -->
+
+        <!-- Question CIN -->
+        <label>Avez-vous une CIN ?</label>
+        <input type="radio" id="cinOui" name="cin" value="oui" onclick="toggleCinUpload(true)"> Oui
+        <input type="radio" id="cinNon" name="cin" value="non" onclick="toggleCinUpload(false)"> Non
+
+        <!-- Upload de photo CIN, s'affiche seulement si l'utilisateur a une CIN -->
+        <div id="cinUpload" style="display: none;">
+            <label for="photoCIN">Télécharger une photo de votre CIN</label>
+            <input type="file" id="photoCIN" name="photoCIN" accept=".jpg, .jpeg, .png">
+        </div>
+
+        <!-- Question Référence e-photo -->
+        <label>Avez-vous une référence e-photo ?</label>
+        <input type="radio" id="referenceOui" name="reference" value="oui" onclick="toggleReference(true)"> Oui
+        <input type="radio" id="referenceNon" name="reference" value="non" onclick="toggleReference(false)"> Non
+
+        <!-- Champ pour entrer la référence, s'affiche seulement si "Oui" est sélectionné -->
+        <div id="referenceInput" style="display: none;">
+            <label for="inputReference">Entrer votre référence e-photo</label>
+            <input type="text" id="inputReference" name="inputReference">
+        </div>
+
+        <!-- Upload de photo pour la référence e-photo, s'affiche seulement si "Non" est sélectionné -->
+        <div id="referenceUpload" style="display: none;">
+            <label for="referencePhoto">Télécharger une photo pour la référence e-photo</label>
+            <input type="file" id="referencePhoto" name="referencePhoto" accept=".jpg, .jpeg, .png">
+        </div>
+
+        <!-- Bouton de soumission -->
+        <input type="submit" value="Valider">
+    </form>
+
+    <!-- Bouton "Créer un badge", caché par défaut -->
+    <div id="createBadgeSection" style="display: none; margin-top: 20px;">
+        <button id="createBadgeButton" onclick="createBadge()">Créer un badge</button>
+    </div>
+
+    <!-- Script JavaScript pour afficher/masquer les champs et bouton badge -->
+    <script>
+        function toggleCinUpload(show) {
+            document.getElementById("cinUpload").style.display = show ? 'block' : 'none';
+        }
+
+        function toggleReference(hasReference) {
+            document.getElementById("referenceInput").style.display = hasReference ? 'block' : 'none';
+            document.getElementById("referenceUpload").style.display = hasReference ? 'none' : 'block';
+        }
+
+        // Fonction qui sera appelée lorsque l'utilisateur valide le formulaire avec succès
+        function showCreateBadgeButton() {
+            document.getElementById("createBadgeSection").style.display = 'block';
+        }
+
+        		function createBadge() {
+		    var userId = document.getElementById("userId").value;
+
+		    fetch(`/pages/saisieReference/createBadge?userId=${userId}`, {
+		        method: 'GET'
+		    })
+		    .then(response => response.text())
+		    .then(data => {
+		        alert(data);  // Affiche le message de succès ou d'erreur
+		    })
+		    .catch(error => {
+		        console.error("Erreur lors de la création du badge :", error);
+		    });
+		}
+
+
+		// Écoutez la soumission du formulaire pour afficher le bouton "Créer un badge"
+		        document.getElementById("userForm").addEventListener("submit", function(event) {
+		            event.preventDefault(); // Empêche le comportement de soumission par défaut
+		            showCreateBadgeButton(); // Affiche le bouton après la soumission
+		        });
+    </script>
+
+</body>
+</html>

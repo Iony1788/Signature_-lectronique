@@ -9,21 +9,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 @RequestMapping("pages/saisieReference")  
 public class ReferenceController {
 
-    
-    
-
-
     @GetMapping 
     public ModelAndView showForm() {
         return new ModelAndView("/pages/infoUser");
     }
     
     
-    //
-    
-    
-    
-
-
     
 }

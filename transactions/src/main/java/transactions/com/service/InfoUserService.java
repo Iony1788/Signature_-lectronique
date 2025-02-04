@@ -1,14 +1,13 @@
 package transactions.com.service;
 
-import org.apache.catalina.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional; // Importation corrigée ici
+import java.util.Optional; 
 
 import javax.persistence.EntityManager;
-import javax.persistence.EntityNotFoundException; // Importation ajoutée pour EntityNotFoundException
+import javax.persistence.EntityNotFoundException;
 import javax.persistence.PersistenceContext;
 
 import transactions.com.entity.InfoUser;
@@ -21,14 +20,8 @@ public class InfoUserService {
     @Autowired
     private InfoUserRepository infoUserRepository;
     
-
-    
-    
     @PersistenceContext
     private EntityManager entityManager;
-
-    
-
 
 
     // Méthode pour sauvegarder un utilisateur
@@ -38,7 +31,7 @@ public class InfoUserService {
 
     // Méthode pour récupérer tous les utilisateurs
     public List<InfoUser> getAllUtilisateurs() {
-        return infoUserRepository.findAll(); // Assurez-vous que cela retourne List<InfoUser>
+        return infoUserRepository.findAll(); 
     }
 
     // Méthode pour récupérer un utilisateur par son ID
@@ -70,6 +63,10 @@ public class InfoUserService {
 
     public InfoUser findByReference(String reference) {
        return infoUserRepository.findByReference(reference);
+    }
+
+    public List<InfoUser> getAllInfoUsers() {
+        return infoUserRepository.findAll();
     }
 
     

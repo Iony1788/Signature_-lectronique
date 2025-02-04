@@ -7,33 +7,20 @@ import org.springframework.http.HttpMethod;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-
 import transactions.com.model.SignerModel;
-
-import java.awt.Color;
-import java.awt.Font;
 import java.awt.Graphics;
-import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayOutputStream;
 import java.io.ByteArrayInputStream;
-import java.io.File;
 import java.io.IOException;
-import java.net.HttpURLConnection;
-import java.net.URL;
-import java.nio.charset.StandardCharsets;
-
 import javax.imageio.ImageIO;
-
-import java.io.OutputStream;
-
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
 @Service
 public class ImageService {
 
-    private static final String SIGN_SERVER_URL = "https://preprod-sonia.eqima.org/signserver/rest/v1/workers/{workerId}/process";
+    //private static final String SIGN_SERVER_URL = "https://preprod-sonia.eqima.org/signserver/rest/v1/workers/{workerId}/process";
     
     @Autowired
 	private RestTemplate restTemplate;

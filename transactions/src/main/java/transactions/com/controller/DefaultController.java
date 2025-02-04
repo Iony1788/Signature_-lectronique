@@ -2,10 +2,7 @@ package transactions.com.controller;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
-
 import org.keycloak.KeycloakPrincipal;
-
-
 import org.keycloak.KeycloakSecurityContext;
 import org.keycloak.adapters.KeycloakDeployment;
 import org.keycloak.adapters.RefreshableKeycloakSecurityContext;
@@ -22,6 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 import transactions.com.model.UserCredentials;
 import transactions.com.service.KeyCloakService;
+
 
 @RestController
 class Defaultcontroller {

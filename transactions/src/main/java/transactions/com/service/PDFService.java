@@ -35,7 +35,6 @@ import java.io.File;
 import java.io.IOException;
 import java.security.cert.CertificateException;
 import java.time.Instant;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import transactions.com.entity.Settings;
@@ -47,19 +46,12 @@ public class PDFService {
 	
 	@Autowired
 	private RestTemplate restTemplate;
-	
-    @Autowired
-    private PDFService pdfService;
     
     @Autowired
 	private  SettingsRepository settingsRepository;
 		
 	private int idCounter;
     
-    
-    
-    
-   
 
 public byte[] convertToPDF(byte[] signedImage) {
     try (ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream()) {
@@ -211,105 +203,55 @@ public void generatePdfAndSaveToDirectory(String htmlContent, String directoryPa
 
 
 	public String modelFicheDeSignature(String pathPhoto, String pathSignature, String workerName, String date, String uuid, String newName) {
-	    return "<!DOCTYPE html>" +
-	            "<html lang='fr'>" +
-	            "<head>" +
-	            "<meta charset='UTF-8'>" +
-	            "<meta name='viewport' content='width=device-width, initial-scale=1.0'>" +
-	            "<title>Fiche de Signature</title>" +
-	            "<link href='https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap' rel='stylesheet'>" +
-	            "<style>" +
-	            "body { font-family: 'Roboto', sans-serif; margin: 0; padding: 20px; background-color: #f4f4f4; }" +
-	            ".badge { border-radius: 10px; padding: 30px; background-color: #ffffff; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); max-width: 800px; margin: 20px auto; }" + // Bordure bleue supprimée
-	            ".header { text-align: center; margin-bottom: 20px; }" +
-	            ".header h1 { font-size: 24px; color: #333; margin: 0; }" + // Couleur sombre
-	            ".container { display: flex; align-items: center; margin-bottom: 20px; }" +
-	            ".container-photo { width: 180px; height: 180px; overflow: hidden; border-radius: 50%; margin-right: 20px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); }" + // Bordure bleue supprimée
-	            ".container-photo img { width: 100%; height: 100%; object-fit: cover; }" +
-	            ".signature { width: 180px; height: 180px; overflow: hidden; border-radius: 8px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); }" + // Bordure bleue supprimée
-	            ".signature img { width: 100%; height: 100%; object-fit: cover; }" +
-	            ".info { display: flex; flex-direction: column; flex-grow: 1; }" +
-	            ".info p { margin: 5px 0; font-size: 16px; color: #333; text-align: left; box-shadow: 0 0 5px rgba(0, 0, 0, 0.2); }" + // Taille moyenne pour les paragraphes
-	            ".info strong { font-size: 20px; color: #333; }" + // Couleur sombre
-	            ".footer { text-align: center; margin-top: 20px; font-size: 14px; color: #777; }" + // Style du footer
-	            "</style>" +
-	            "</head>" +
-	            "<body>" +
-	            "<div class='badge'>" +
-	            "<div class='header'>" +
-	            "<h1>Fiche de Signature</h1>" +
-	            "</div>" +
-	            "<div class='container'>" +
-	            "<div class='container-photo'>" +
-	            "<img src='" + pathPhoto + "' alt='Photo de l'ouvrier'/>" +
-	            "</div>" +
-	            "<div class='info'>" +
-	            "<p><strong>Worker Name:</strong> " + newName + "</p>" + // Nom de l'ouvrier
-	            "<p><strong>Reference:</strong> " + uuid + "</p>" + // Référence
-	            "<p><strong>Date:</strong> " + date + "</p>" +
-	            "<p><strong>Full Name:</strong> " + workerName + "</p>" + // Nom complet
-	            "</div>" +
-	            "</div>" +
-	            "<div class='signature'>" +
-	            "<img src='" + pathSignature + "' alt='Signature de l'ouvrier'/>" +
-	            "</div>" +
-	            "<div class='footer'>Fiche générée automatiquement</div>" +
-	            "</div>" +
-	            "</body>" +
-	            "</html>";
-	}
+        return "<!DOCTYPE html>" +
+                "<html lang='fr'>" +
+                "<head>" +
+                "<meta charset='UTF-8'>" +
+                "<meta name='viewport' content='width=device-width, initial-scale=1.0'>" +
+                "<title>Fiche de Signature</title>" +
+                "<link href='https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap' rel='stylesheet'>" +
+                "<style>" +
+                "body { font-family: 'Roboto', sans-serif; margin: 0; padding: 20px; background-color: #f4f4f4; }" +
+                ".badge { border-radius: 10px; padding: 30px; background-color: #d9eaff; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); max-width: 800px; margin: 20px auto; }" +
+                ".header { text-align: center; margin-bottom: 20px; }" +
+                ".header h1 { font-size: 24px; color: #003366; margin: 0; }" +
+                ".container { display: flex; align-items: center; margin-bottom: 20px; }" +
+                ".container-photo { width: 180px; height: 180px; overflow: hidden; border-radius: 10px; border: 2px solid #003366; margin-right: 20px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); }" +
+                ".container-photo img { width: 100%; height: 100%; object-fit: cover; }" +
+                ".signature { width: 180px; height: 180px; overflow: hidden; border-radius: 10px; border: 2px solid #003366; box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); }" +
+                ".signature img { width: 100%; height: 100%; object-fit: cover; }" +
+                ".info { display: flex; flex-direction: column; flex-grow: 1; }" +
+                ".info p { margin: 5px 0; font-size: 18px; color: #003366; text-align: left; box-shadow: 0 0 5px rgba(0, 0, 0, 0.2); padding: 10px; }" +
+                ".info strong { font-size: 20px; color: #003366; }" +
+                ".footer { text-align: center; margin-top: 20px; font-size: 14px; color: #003366; }" +
+                "</style>" +
+                "</head>" +
+                "<body>" +
+                "<div class='badge'>" +
+                "<div class='header'>" +
+                "<h1>Fiche de Signature</h1>" +
+                "</div>" +
+                "<div class='container'>" +
+                "<div class='container-photo'>" +
+                "<img src='" + pathPhoto + "' alt='Photo de l'ouvrier'/>" +
+                "</div>" +
+                "<div class='info'>" +
+                "<p><strong>Worker Name:</strong> " + newName + "</p>" +
+                "<p><strong>Reference:</strong> " + uuid + "</p>" +
+                "<p><strong>Date:</strong> " + date + "</p>" +
+                "<p><strong>Full Name:</strong> " + workerName + "</p>" +
+                "</div>" +
+                "</div>" +
+                "<div class='signature'>" +
+                "<img src='" + pathSignature + "' alt='Signature de l'ouvrier'/>" +
+                "</div>" +
+                "<div class='footer'>Fiche générée automatiquement</div>" +
+                "</div>" +
+                "</body>" +
+                "</html>";
+    }
+    
 	
-	
-//	public String modelFicheDeSignature(String pathPhoto, String pathSignature, String workerName, String date, String uuid, String newName) {
-//	    return "<!DOCTYPE html>" +
-//	            "<html lang='fr'>" +
-//	            "<head>" +
-//	            "<meta charset='UTF-8'>" +
-//	            "<meta name='viewport' content='width=device-width, initial-scale=1.0'>" +
-//	            "<title>Fiche de Signature</title>" +
-//	            "<link href='https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap' rel='stylesheet'>" +
-//	            "<style>" +
-//	            "body { font-family: 'Roboto', sans-serif; margin: 0; padding: 20px; background-color: #f8f9fa; }" + 
-//	            ".badge { border-radius: 15px; padding: 30px; background-color: #ffffff; box-shadow: 0 6px 30px rgba(0, 0, 0, 0.15); max-width: 800px; margin: 20px auto; border: 2px solid #007bff; }" + 
-//	            ".header { text-align: center; margin-bottom: 20px; }" +
-//	            ".header h1 { font-size: 28px; color: #007bff; margin: 0; }" + 
-//	            ".container { display: flex; align-items: center; margin-bottom: 20px; padding: 10px; border-radius: 10px; background-color: #e9ecef; }" +
-//	            ".container-photo { width: 180px; height: 180px; overflow: hidden; border-radius: 50%; margin-right: 20px; box-shadow: 0 0 15px rgba(0, 0, 0, 0.1); }" +
-//	            ".container-photo img { width: 100%; height: 100%; object-fit: cover; }" +
-//	            ".signature { width: 180px; height: 100px; overflow: hidden; border-radius: 10px; box-shadow: 0 0 15px rgba(0, 0, 0, 0.1); margin-top: 20px; }" +
-//	            ".signature img { width: 100%; height: 100%; object-fit: cover; }" +
-//	            ".info { display: flex; flex-direction: column; flex-grow: 1; }" +
-//	            ".info p { margin: 5px 0; font-size: 16px; color: #333; padding: 10px; border-radius: 5px; background-color: #ffffff; box-shadow: 0 0 5px rgba(0, 0, 0, 0.05); }" +
-//	            ".info strong { font-size: 18px; color: #007bff; }" +
-//	            ".footer { text-align: center; margin-top: 20px; font-size: 14px; color: #6c757d; }" +
-//	            "</style>" +
-//	            "</head>" +
-//	            "<body>" +
-//	            "<div class='badge'>" +
-//	            "<div class='header'>" +
-//	            "<h1>Fiche de Signature</h1>" +
-//	            "</div>" +
-//	            "<div class='container'>" +
-//	            "<div class='container-photo'>" +
-//	            "<img src='" + pathPhoto + "' alt='Photo de l'ouvrier'/>" +
-//	            "</div>" +
-//	            "<div class='info'>" +
-//	            "<p><strong>Nom de l'ouvrier :</strong> " + newName + "</p>" +
-//	            "<p><strong>Référence :</strong> " + uuid + "</p>" +
-//	            "<p><strong>Date :</strong> " + date + "</p>" +
-//	            "<p><strong>Nom complet :</strong> " + workerName + "</p>" +
-//	            "</div>" +
-//	            "</div>" +
-//	            "<div class='signature'>" +
-//	            "<img src='" + pathSignature + "' alt='Signature de l'ouvrier'/>" +
-//	            "</div>" +
-//	            "<div class='footer'>Fiche générée automatiquement</div>" +
-//	            "</div>" +
-//	            "</body>" +
-//	            "</html>";
-//	}
-
-
 
 
 public  String ExtractDateSignature(byte[] pdfBytes) throws CertificateException {
@@ -366,17 +308,17 @@ public static byte[] cropPDFToHaveSignature(byte[] pdfBytes) {
         // Parcourir toutes les pages du document
         for (PDPage page : document.getPages()) {
             // Obtenir les dimensions de la page
-            PDRectangle mediaBox = page.getMediaBox();
-            float pageWidth = mediaBox.getWidth();
-            float pageHeight = mediaBox.getHeight();
+            //PDRectangle mediaBox = page.getMediaBox();
+            //float pageWidth = mediaBox.getWidth();
+            //float pageHeight = mediaBox.getHeight();
 
             // Définir les dimensions du rectangle de rognage
             float cropWidth = 150; // Largeur du rectangle de rognage
             float cropHeight = 150; // Hauteur du rectangle de rognage
 
             // Calculer les coordonnées du coin supérieur gauche pour le rognage
-            float cropX = (pageWidth - cropWidth) / 2; // Centré horizontalement
-            float cropY = (pageHeight - cropHeight); // Positionné en bas
+            //float cropX = (pageWidth - cropWidth) / 2; // Centré horizontalement
+            //float cropY = (pageHeight - cropHeight); // Positionné en bas
 
             // Créer le rectangle de rognage
             PDRectangle cropBox = new PDRectangle(500, 0, cropWidth, cropHeight);

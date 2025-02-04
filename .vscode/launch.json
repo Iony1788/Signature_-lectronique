@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-TransactionsApplication<transactions>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "transactions.com.TransactionsApplication",
+            "projectName": "transactions",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        }
+    ]
+}

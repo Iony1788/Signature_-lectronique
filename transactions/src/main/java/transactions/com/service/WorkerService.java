@@ -11,10 +11,10 @@ import transactions.com.repository.WorkerRepository;
 public class WorkerService {
 
 	 @Autowired
-	    private WorkerRepository workerRepository; // Assurez-vous que votre repository est correctement injecté
+	    private WorkerRepository workerRepository; 
 
 	    public List<Worker> getAllWorkers() {
-	        return workerRepository.findAll(); // Cela devrait renvoyer tous les travailleurs
+	        return workerRepository.findAll();
 	    }
 
 }
